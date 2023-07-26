@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const UserController = require('./src/controllers/userControllers/UserController')
+const LocalController = require('./src/controllers/localControllers/LocalController')
 
 function checkToken(req, res, next){
     const autHeader = req.headers['authorization']
@@ -24,6 +25,7 @@ function checkToken(req, res, next){
 }
 
 const userController = new UserController();
+const localController = new LocalController();
 
 //Rotas de Usuários
 
@@ -32,6 +34,16 @@ router.get('/user/:id', checkToken, userController.findbyId)
 // //Públicas
 router.post('/auth/register', userController.create) 
 router.post('/auth/login', userController.login) 
+
+// ---------------------------------------------------------------------------------------------
+
+//Rotas de Locais
+
+//Privadas
+// router.get('/user/:id', checkToken, userController.findbyId)
+
+//Públicas
+router.post('/auth/local',checkToken, localController.create) 
 
 
 module.exports = router; 

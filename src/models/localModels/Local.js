@@ -1,20 +1,26 @@
 const mongoose = require('mongoose')
 
-const User = mongoose.model('User', {
+const Local = mongoose.model('Local', {
     name: {
         type: String,
         required: true
     },
-    email: {
+    description: {
         type: String,
         required: true,
-        unique: true,
-        lowercase: true
     },
-    password: {
+    type: {
         type: String,
-        required: true,
-        select: false,
+        required: true
+    },   
+    infos: {
+        type: Object,
+    },
+    user: {
+        type: Object,
+    },
+    cityId: {
+        type: Object,
     },
     createAt: {
         type: Date,
@@ -22,4 +28,4 @@ const User = mongoose.model('User', {
     }
 })
 
-module.exports = User;
+module.exports = Local;
